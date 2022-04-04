@@ -8,6 +8,9 @@ treefiles=[i for i in treefiles if i.endswith('.treefile')]
 jdata=open('jansen_lab_data.txt').readlines()
 jdata=[i.strip() for i in jdata]
 
+duptaxa=open('dupsp2remove.txt').readlines()
+duptaxa=[i.strip() for i in duptaxa]
+
 def prune_long_br(tr,length_limit):
 	#calculate trimmed mean branch length
 	br_len=[node.dist for node in tr.traverse("postorder")]
@@ -18,7 +21,9 @@ def prune_long_br(tr,length_limit):
 		if node.dist>length_limit*mean_br:tips2remove=tips2remove+[j.name for j in node]
 	tips2remove=list(set(tips2remove))
 	#do not remove anything in our data yet
-	tips2remove=[j for j in tips2remove if not j in jdata]
+	#tips2remove=[j for j in tips2remove if not j in jdata]
+	#remove duplicate taxa
+	tips2remove=tips2remove+[node.name for node in tr if node.name in duptaxa]
 	if len(tips2remove)>0:
 		taxa=[node.name for node in tr if not node.name in tips2remove]
 		tr.prune(taxa,preserve_branch_length =True)
@@ -33,13 +38,45 @@ for i in treefiles:
 	#tree = prune_long_br(tree,10)
 	num_taxa_after=len(tree)
 	paralog_genes[i]=num_taxa_before-num_taxa_after
-	tree.write(outfile=i.split('.')[0]+'.nolongbr.tre')
+	#tree.write(outfile=i.split('.')[0]+'.nolongbr.tre')
+	tree.write(outfile=i.split('.')[0]+'.nolongbrnodup.tre')
 
+
+###################
+#get summary statistics
 output=open('num_paralog_per_gene.tsv','a')
 for key in paralog_genes.keys():
 	output.write(key+'\t'+str(paralog_genes[key])+'\n')
 
+output.close()
 
+treefiles=os.listdir('.')
+treefiles=[i for i in treefiles if i.endswith('.nolongbrnodup.tre')]
+a={}
+b={}
+for i in treefiles:
+    t=Tree(i)
+    a[i]=len(t)
+    for node in t:
+            try:
+                    b[node.name]=b[node.name]+1
+            except KeyError:
+                    b[node.name]=1
+
+out1=open('num_sp_per_gene_after_pruning.tsv','a')
+out2=open('number_gene_per_sp.tsv','a')
+for key in a.keys():
+    d=out1.write(key+'\t'+str(a[key])+'\n')
+
+out1.close()
+
+for key in b.keys():
+    d=out2.write(key+'\t'+str(b[key])+'\n')
+
+out2.close()
+
+#################
+#extract seq according to 
 from Bio import SeqIO
 
 treefiles=os.listdir('.')
