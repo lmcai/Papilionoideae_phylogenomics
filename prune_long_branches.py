@@ -80,13 +80,16 @@ out2.close()
 from Bio import SeqIO
 
 treefiles=os.listdir('.')
-treefiles=[i for i in treefiles if i.endswith('.nolongbr.tre')]
+#treefiles=[i for i in treefiles if i.endswith('.nolongbr.tre')]
+treefiles=[i for i in treefiles if i.endswith('.nolongbrnodup.tre')]
 
 for i in treefiles:
 	tr=Tree(i)
 	taxa=[j.name for j in tr]
-	recs=SeqIO.parse(i.split('.')[0]+'.aln.fas','fasta')
-	out=open(i.split('.')[0]+'.nolongbr.aln.fas','a')
+	#recs=SeqIO.parse(i.split('.')[0]+'.aln.fas','fasta')
+	recs=SeqIO.parse(i.split('.')[0]+'.nolongbr.Rtrim.aln.fas','fasta')
+	#out=open(i.split('.')[0]+'.nolongbr.aln.fas','a')
+	out=open(i.split('.')[0]+'.nolongbr.Rtrim.nodup.fas','a')
 	for rec in recs:
 		if rec.id in taxa:
 			d=SeqIO.write(rec,out,'fasta')
