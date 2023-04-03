@@ -1,0 +1,51 @@
+treefile = round2.spname.rooted.tre
+numsites = 1149020
+outfile = round2.spname.rooted.treePL.tre
+smooth = 0.1
+thorough
+#prime
+
+mrca = node1 Eschscholzia_californica@Esch_cali_ou Pediomelum_californicum@HM3030_c98
+mrca = node2 Nothofagus_antarctica@HM2390_c98 Polygala_latouchei@ZCF4683_c98
+mrca = node3 Paeonia_lactiflora@Paeo_lact_ou Liquidambar_formosana@Liqu_form_ou
+mrca = node4 Paeonia_lactiflora@Paeo_lact_ou Nothofagus_antarctica@HM2390_c98
+mrca = node5 Nothofagus_antarctica@HM2390_c98 Juglans_regia@Jugl_regi_ou
+mrca = node6 Polygala_latouchei@ZCF4683_c98 Polygala_arillata@HG075_c98
+mrca = node7 Polygala_latouchei@ZCF4683_c98 Cercis_canadensis@Cercis_canadensis_ge
+mrca = node8 Ceratonia_siliqua@HM2584_c98 Dialium_schlechteri@FC230_c98
+mrca = node9 Castanospermum_australe@RB38 Parkinsonia_aculeata@TX04
+mrca = node10 Styphnolobium_japonicum@ZY440_c98 Swartzia_bahiensis@BA07
+mrca = node11 Tipuana_tipu@RB57 Lupinus_arboreus@SRR3423040_c98
+mrca = node12 Lupinus_arboreus@SRR3423040_c98 Tipuana_tipu@RB57
+mrca = node13 Coursetia_rostrata@ba02 Pisum_sativum@SRR1910804_c98
+
+min = node1 128.6
+max = node1 128.6
+min = node2 100.5
+min = node3 89.3
+min = node4 110.6
+min = node5 85.8
+min = node6 55.8
+min = node7 63.5
+min = node8 54
+min = node9 55
+min = node10 40
+min = node11 56
+min = node12 56
+min = node13 33.9
+
+#cv
+#randomcv
+#cvstart = 1000
+#cvstop = 0.1
+#cvoutfile = round1.spname.rooted.treePL.cv.txt
+nthreads = 1
+
+
+opt = 2
+moredetail
+optad = 2
+moredetailad
+optcvad = 1
+moredetailcvad
+
