@@ -1,4 +1,4 @@
-setwd('')
+setwd('MyDir/')
 library(ape)
 #association=read.table('pt_ITS.filtered.tsv')
 association=read.csv('astral_raxml.csv',sep=',',header = T)
