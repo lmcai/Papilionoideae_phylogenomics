@@ -1,0 +1,8 @@
+	P(stem_Cercis.prior) = -Infinity (was -Infinity)
+		P(stem_Cladrastis.prior) = NaN (was NaN)  **
+		P(stem_Dalbergioid.prior) = NaN (was NaN)  **
+		P(stem_Genistoid.prior) = NaN (was NaN)  **
+		P(stem_Papilionoideae.prior) = NaN (was NaN)  **
+		P(stem_Robinioid.prior) = NaN (was NaN)  **
+		P(stem_fabaceae.prior) = NaN (was NaN)  **
+		P(stem_fagales.prior) = NaN (was NaN)  **
