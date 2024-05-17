@@ -42,3 +42,8 @@ dev.off()
 #plot.bammdata(edata, lwd=2,legend=T,color.interval = c(0.067,0.3))
 #x=getTipRates(edata,returnNetDiv = TRUE,statistic = 'median') 
 #xx=as.data.frame(x$netdiv.avg)
+
+library(diversitree)
+pdf('trait.pdf',width = 10,height = 10)
+trait.plot(legume.tree, keel.data, cols=list(keel=c("green","red")),cex.lab=0.1)
+dev.off()
