@@ -1,4 +1,13 @@
-1. Gene and site concordance factor
+# Testing alternative placements of clades
+
+## Likelihood-based tests: approximately unbiased (AU), Kishino-Hasegawa (KH), and Shimodaira-Hasegawa (SH) tests
+
+All these tests are implemented in IQ-TREE, use the following commands:
+```
+
+```
+
+## Gene and site concordance factor
 A. Gene
 
 
