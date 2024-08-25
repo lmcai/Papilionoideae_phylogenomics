@@ -2,12 +2,13 @@
 
 ## Likelihood-based tests: approximately unbiased (AU), Kishino-Hasegawa (KH), and Shimodaira-Hasegawa (SH) tests
 
-1. Prepare multiple species trees by alternating the placements of focal group, and then infer branch length in iqtree, concatenated into one file.
+1. Prepare multiple species trees (two competing hypotheses in the example below) by alternating the placements of focal group, and then infer branch length in iqtree, concatenated into one file. Commands:
 ```
 iqtree2 -s sp287.G672.fas -m GTR+F+R4 -g global_best.tre --prefix conTr1_1.DalbergioidGenistoid
 iqtree2 -s sp287.G672.fas -m GTR+F+R4 -g conTr1_2.DalbergioidNPAAA.tre --prefix conTr1_2.DalbergioidNPAAA
+cat conTr1_1.DalbergioidGenistoid.treefile conTr1_2.DalbergioidNPAAA.treefile >conTr1.trees
 ```
-3. All these tests are implemented in IQ-TREE, use the following commands:
+3. Implement AU, KH, SH tests in IQ-TREE with the following commands:
 ```
 #AU, KH, Sh tests
 iqtree2 -s sp287.G672.fas -m GTR+F+R4 -z conTr1.trees -n 0 -zb 1000 -au -zw
