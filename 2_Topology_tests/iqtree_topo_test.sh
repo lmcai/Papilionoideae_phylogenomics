@@ -1,7 +1,7 @@
 #gene concordance factor
-iqtree2 -t raxmlng4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
+iqtree2 -t iqtree4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
 #site concordance factor
-iqtree2 -te raxmlng.tre -s sp287.G672.fas --scfl 200 --prefix G672onRaxML.sCF
+iqtree2 -te iqtree.tre -s sp287.G672.fas --scfl 200 --prefix G672onRaxML.sCF
 
 
 #AU, KH, Sh tests
