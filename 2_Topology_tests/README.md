@@ -2,29 +2,32 @@
 
 ## Likelihood-based tests: approximately unbiased (AU), Kishino-Hasegawa (KH), and Shimodaira-Hasegawa (SH) tests
 
-All these tests are implemented in IQ-TREE, use the following commands:
+1. Prepare multiple species trees by alternating the placements of focal group, and then infer branch length in iqtree, concatenated into one file.
 ```
-
+iqtree2 -s sp287.G672.fas -m GTR+F+R4 -g global_best.tre --prefix conTr1_1.DalbergioidGenistoid
+iqtree2 -s sp287.G672.fas -m GTR+F+R4 -g conTr1_2.DalbergioidNPAAA.tre --prefix conTr1_2.DalbergioidNPAAA
+```
+3. All these tests are implemented in IQ-TREE, use the following commands:
+```
+#AU, KH, Sh tests
+iqtree2 -s sp287.G672.fas -m GTR+F+R4 -z conTr1.trees -n 0 -zb 1000 -au -zw
 ```
 
 ## Gene and site concordance factor
-A. Gene
-
-
- iqtree2 -t raxmlng4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
-
-G1456onRAxML.gCF.cf.tree.nex and  G1456onRAxML.gCF.cf.tree
+1. Commands to get gCF and sCF in iqtree:
+```
+#gene concordance factor
+iqtree2 -t iqtree4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
+#site concordance factor
+iqtree2 -te iqtree.tre -s sp287.G672.fas --scfl 200 --prefix G672onRaxML.sCF
+```
 
 Result explained: The gDF quantifies support for the two nearest-neighbor interchange bipartitions (gDF1 and gDF2) and for all other possible
 topologies (gDFP, as these are paraphyletic relative to the species
 tree bipartition).
 The sDF metrics quantify support among sites for the two possible alternative quartets (sDF1 and sDF2). Low gDF1 and gDF2 values or high gDFP values suggest the gene trees or alignments lack a clear signal, as do sDF values close to 33% (Minh et al., 2020a).
 
-B. Site
-iqtree2 -te raxmlng.tre -s sp287.G672.fas --scfl 200 --prefix G672onRaxML.sCF
-Results are in 
-
-3. Gene-wise signals.
+## Gene-wise signals.
 Now we want to investigate the cause for such topological difference between trees inferred by single and partition model. One way is to identify genes contributing most phylogenetic signal towards one tree but not the other.
 How can one do this? We can look at the gene-wise log-likelihood (logL) differences between the two given trees T1 and T2. Those genes having the largest logL(T1)-logL(T2) will be in favor of T1. Whereas genes showing the largest logL(T2)-logL(T1) are favoring T2.
 
