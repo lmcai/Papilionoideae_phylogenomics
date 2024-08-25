@@ -27,7 +27,7 @@ python phyloherb.py -m conc -i G672 -o G672.conc -suffix .na.aln.fas
 ```
 python PartitionFinder.py -f -p 8 -r --rcluster-percent=10 --rcluster-max=1000 G1553_pf
 ```
-3. With the optimal partition scheme is `G672.partitionfinder.scheme`, run raxml ng for species tree inference with 100 bootstrap
+3. With the optimal partition scheme is `G672.partitionfinder.scheme`, run iqtree for species tree inference with 100 bootstrap
 ```
-raxml-ng --msa sp287.G672.phy --tree RAxML.parsimony.tre --threads 32 --model G672.partitionfinder.scheme
+iqtree2 -s sp287.G672.phy -p G672.partitionfinder.scheme -n AUTO -b 100
 ```
