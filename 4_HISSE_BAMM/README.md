@@ -21,4 +21,4 @@ To implement this test, use the script in `HiSSE.R`. Notably, the following crit
 * If ΔAIC < 2, then there is substantial support for the model with the lower AIC score.
 * If 2 < ΔAIC < 6, then there is less support for the model with the higher AIC score.
 * If ΔAIC > 6, then there is essentially no support for the model with the higher AIC score.
-6. We performed marginal ancestral state reconstruction for marine and freshwater habitat across the species tree using hidden state speciation and extinction models in the R package hisse (Beaulieu and O’Meara 2016)
+
