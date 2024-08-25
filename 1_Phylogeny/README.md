@@ -12,4 +12,14 @@ Then use ASTRAL-III to infer a species tree under the coalescent model
 java -jar astral.5.7.8.jar -i G2299.gene.70shalrt.trees -o astral.ufbp70.rooted.tre
 ```
 
-2. To infer a species tree using the concatenated DNA sequences, we first 
+2. To infer a species tree using the concatenated DNA sequences, we first filter the genes based on length and missing data. We only used genes with >227 species (80%) and longer than 900 bp. This result in 672 loci listed in `G672_len900_sp227.list`.
+
+Then we generate a gene concatenation file with `PhyloHerb`
+```
+python phyloherb.py -m conc -i G672 -o G672.conc -suffix .na.aln.fas
+```
+
+Run partitionfinder to get the optimal partition scheme
+```
+
+```
