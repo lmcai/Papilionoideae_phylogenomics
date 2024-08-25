@@ -28,7 +28,7 @@ topologies (gDFP, as these are paraphyletic relative to the species
 tree bipartition).
 The sDF metrics quantify support among sites for the two possible alternative quartets (sDF1 and sDF2). Low gDF1 and gDF2 values or high gDFP values suggest the gene trees or alignments lack a clear signal, as do sDF values close to 33% (Minh et al., 2020a).
 
-## Gene-wise signals.
+## Gene-wise signals
 Now we want to investigate the cause for topological difference between various phylogenomic analysis. One way is to identify genes contributing most phylogenetic signal towards one tree but not the other as described in Shen et al. (2017, Nat Ecol Evol). How can one do this? We can look at the gene-wise log-likelihood (logL) differences between the two given trees T1 and T2. Those genes having the largest logL(T1)-logL(T2) will be in favor of T1. Whereas genes showing the largest logL(T2)-logL(T1) are favoring T2.
 
 To compute gene-wise log-likelihoods for the two trees, you can use the -wpl option (for writing partition log-likelihoods):
@@ -39,3 +39,5 @@ will write a file `conTr.genewisell.wpl.partlh`, that contains log-likelihoods f
 
 Import `conTr.genewisell.wpl.partlh` into MS Excel, R, or any other spreadsheet software to examine the contribution of each locus to the final likelihoods. To visualize the results, use the R script `genewiseLL_plot.R` 
 
+## Multispecies Coalescent Model based likelihood ratio test
+See the README file with the subfolder
