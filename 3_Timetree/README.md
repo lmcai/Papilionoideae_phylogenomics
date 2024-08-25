@@ -17,4 +17,8 @@ This relatively large dataset of 30 genes (large for BEAST to converge) and 12 c
 
 4. Use the BEAST time tree as secondary calibrations for treePL tree
 
-With a well-curated matK dataset, we infer a ML phylogeny with partially fixed relationship: relationships **between** the major Papilionoid clades were constrained including the ADA, Swartzieae, Cladrastis, Vataireoid, Exostyleae, Dalbergioid s.l., Genistoid s.l., Andira, Baphieae, and NPAAA. Relationships **within** each clade and **between all subfamilies and families** remained **as-is**. 
+With a well-curated matK dataset, we infer an ML phylogeny with partially fixed relationships indicated in `round2.topo_constraint.tre`: relationships **between** the major Papilionoid clades were constrained including the ADA, Swartzieae, Cladrastis, Vataireoid, Exostyleae, Dalbergioid s.l., Genistoid s.l., Andira, Baphieae, and NPAAA. Relationships **within** each clade and **between all subfamilies and families** remained **as-is**. 
+···
+iqtree -s G1088.legumetimetr.fas -st DNA -m GTR -nt AUTO -pre legume2 -te round2.topo_constraint.tre
+···
+
