@@ -102,7 +102,7 @@ plot_hisse <- plot.hisse.states(hisse_figure, rate.param = "net.div", show.tip.l
 
 #Ancestral State Estimation for BiSSE
 bisse_figure <- MarginReconHiSSE(phy=phy, data=trait.dat, f=f,par=BiSSE$solution, hidden.states=0,AIC=BiSSE$AIC)
-plot_hisse <- plot.hisse.states(hisse_figure, rate.param = "net.div", show.tip.label = FALSE)
+plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.label = FALSE)
 
 
 #CID-2 (null HISSE)
