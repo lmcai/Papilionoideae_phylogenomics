@@ -9,7 +9,7 @@ RNA extraction and transcriptome assembly pipeline followed Zhang et al. (2013) 
 
 a. A reference fasta file `ref.fas` was prepared to include one reference sequence per locus from Zhao et al. (2019).
 
-b. Execute the following PhyloHerb command to extract these loci and remove species with larger than 70% missign data.
+b. Execute the following PhyloHerb command to extract these loci and remove species with larger than 70% missings data.
 
 ```
 python phyloherb.py -m assemb -r1 R1.fq -r2 R2.fq -ref ref.fas -prefix sp_A -n 8
