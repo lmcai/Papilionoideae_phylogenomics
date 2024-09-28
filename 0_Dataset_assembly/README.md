@@ -2,7 +2,8 @@
 
 1. Transcriptome assembly
 
-RNA extraction and transcriptome assembly pipeline followed 
+RNA extraction and transcriptome assembly pipeline followed Zhang et al. (2013) "Comparative analyses of two Geraniaceae transcriptomes using next-generation sequencing".
+
 
 2. Extracting nuclear loci from genome skimming data using PhyloHerb
 
