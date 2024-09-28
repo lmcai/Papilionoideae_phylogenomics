@@ -17,7 +17,7 @@ python phyloherb.py -m ortho -i assemblies/ -o seq_extract_output -ref ref.fas -
 
 ```
 
-3. Build a quick and dirt ML tree to identify paralogs with MAFFT and IQTREE
+3. Build a quick and dirty ML tree to identify paralogs with MAFFT and IQTREE
 
 ```
 mafft input.fas >output.aln.fas
