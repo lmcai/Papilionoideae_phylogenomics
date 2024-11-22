@@ -16,7 +16,7 @@ trait.dat=trait.data[,c("Tip_name","Floral_architecture_code")]
 name.check(phy, trait.dat)
 
 ################################################
-##BISSE in hisse
+##1. BISSE in hisse
 
 #sampling proportion for the two states
 f <- c(0.1768,0.123)
@@ -68,7 +68,7 @@ Model parameters:
 
 ################################################
 
-#HISSE
+#2. HISSE
 #decouple turover rate for 0A, 1A, 0B, 1B
 turnover <- c(1,2,3,4)
 extinction.fraction <- rep(1, 4) 
@@ -104,8 +104,8 @@ plot_hisse <- plot.hisse.states(hisse_figure, rate.param = "net.div", show.tip.l
 bisse_figure <- MarginReconHiSSE(phy=phy, data=trait.dat, f=f,par=BiSSE$solution, hidden.states=0,AIC=BiSSE$AIC)
 plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.label = FALSE)
 
-
-#CID-2 (null HISSE)
+############################
+#3. CID-2 (null HISSE)
 turnover <- c(1, 1, 2, 2)
 extinction.fraction <- rep(1, 4) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=1, make.null=TRUE)
@@ -128,7 +128,8 @@ Model parameters:
  turnover0B  turnover1B       eps0B       eps1B       q0B1B       q1B0B 
 3.125897725 3.125897725 0.949894298 0.949894298 0.002406056 0.001231213 
 
-#CID-4
+############################
+#4. CID-4
 turnover <- c(1, 1, 2, 2, 3, 3, 4, 4)
 extinction.fraction <- rep(1, 8) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=3, make.null=TRUE)
@@ -154,3 +155,34 @@ Model parameters:
 0.106109050 0.106109050 0.106109050 0.106109050 1.011376297 1.011376297 0.945715423 0.945715423 
       q0D1D       q1D0D       q0D0A       q0D0B       q0D0C       q1D1A       q1D1B       q1D1C 
 0.002163516 0.001171302 0.106109050 0.106109050 0.106109050 0.106109050 0.106109050 0.106109050 
+
+
+############################
+#5. MISSE (trait-free, tip rates)
+turnover <- c(1)
+eps <- c(1)
+one.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=19302
+
+turnover <- c(1,2)
+eps <- c(1,1)
+two.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18400
+
+#rate classes A:C
+turnover <- c(1,2,3)
+eps <- c(1,1,1)
+three.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18279
+
+#rate classes A:D
+turnover <- c(1,2,3,4)
+eps <- c(1,1,1,1)
+four.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=
+
+#rate classes A:E
+turnover <- c(1,2,3,4,5)
+eps <- c(1,1,1,1,1)
+five.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=
