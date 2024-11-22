@@ -200,6 +200,19 @@ HiSSE <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover,
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
 
+Fit 
+            lnL             AIC            AICc          n.taxa n.hidden.states 
+      -6163.053       12346.107       12346.209        2157.000           2.000 
+
+Model parameters: 
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A 
+6.442302e-01 2.061915e-09 9.499371e-01 9.499371e-01 5.348714e-03 1.734043e-03 
+       q0A0B        q1A1B   turnover0B   turnover1B        eps0B        eps1B 
+2.694958e-01 2.694958e-01 4.130285e+00 6.656230e+00 9.499371e-01 9.499371e-01 
+       q0B1B        q1B0B        q0B0A        q1B1A 
+3.156031e-02 2.096788e-09 2.694958e-01 2.694958e-01 
+
 
 turnover <- c(1, 1, 2, 2, 3, 3, 4, 4)
 extinction.fraction <- rep(1, 8) 
@@ -207,3 +220,4 @@ trans.rate <- TransMatMakerHiSSE(hidden.traits=3, make.null=TRUE)
 CID4 <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate)
+
