@@ -221,3 +221,26 @@ CID4 <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover,
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate)
 
+
+Fit 
+            lnL             AIC            AICc          n.taxa n.hidden.states 
+      -6127.718       12271.437       12271.504        2157.000           4.000 
+
+Model parameters: 
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A 
+7.9563656913 7.9563656913 0.9382626326 0.9382626326 0.0180036837 0.0008305166 
+       q0A0B        q0A0C        q0A0D        q1A1B        q1A1C        q1A1D 
+0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 
+  turnover0B   turnover1B        eps0B        eps1B        q0B1B        q1B0B 
+0.7478200518 0.7478200518 0.9382626326 0.9382626326 0.0180036837 0.0008305166 
+       q0B0A        q0B0C        q0B0D        q1B1A        q1B1C        q1B1D 
+0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 
+  turnover0C   turnover1C        eps0C        eps1C        q0C1C        q1C0C 
+0.7444243819 0.7444243819 0.9382626326 0.9382626326 0.0180036837 0.0008305166 
+       q0C0A        q0C0B        q0C0D        q1C1A        q1C1B        q1C1D 
+0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 
+  turnover0D   turnover1D        eps0D        eps1D        q0D1D        q1D0D 
+0.8309344692 0.8309344692 0.9382626326 0.9382626326 0.0180036837 0.0008305166 
+       q0D0A        q0D0B        q0D0C        q1D1A        q1D1B        q1D1C 
+0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 
