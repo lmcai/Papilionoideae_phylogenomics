@@ -186,3 +186,24 @@ turnover <- c(1,2,3,4,5)
 eps <- c(1,1,1,1,1)
 five.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
 #AICc=
+
+################################
+#6. Papilionoideae-specific analysis
+tree<-read.tree("papilionoideae_matK.BEAST_treePL.tre")
+f <- c(0.1768,0.123)
+turnover <- c(1,2,3,4)
+extinction.fraction <- rep(1, 4) 
+trans.rate.hisse <- TransMatMakerHiSSE(hidden.traits=1)
+print(trans.rate.hisse)
+
+HiSSE <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=TRUE, 
+                     trans.rate=trans.rate.hisse)
+
+
+turnover <- c(1, 1, 2, 2, 3, 3, 4, 4)
+extinction.fraction <- rep(1, 8) 
+trans.rate <- TransMatMakerHiSSE(hidden.traits=3, make.null=TRUE)
+CID4 <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=TRUE, 
+                     trans.rate=trans.rate)
