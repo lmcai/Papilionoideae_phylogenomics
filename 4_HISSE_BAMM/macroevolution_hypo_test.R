@@ -16,7 +16,7 @@ trait.dat=trait.data[,c("Tip_name","Floral_architecture_code")]
 name.check(phy, trait.dat)
 
 ################################################
-##1. BISSE in hisse
+##1. Fabales BISSE
 
 #sampling proportion for the two states
 f <- c(0.1768,0.123)
@@ -68,7 +68,7 @@ Model parameters:
 
 ################################################
 
-#2. HISSE
+#2. Fabales HISSE
 #decouple turover rate for 0A, 1A, 0B, 1B
 turnover <- c(1,2,3,4)
 extinction.fraction <- rep(1, 4) 
@@ -105,7 +105,7 @@ bisse_figure <- MarginReconHiSSE(phy=phy, data=trait.dat, f=f,par=BiSSE$solution
 plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.label = FALSE)
 
 ############################
-#3. CID-2 (null HISSE)
+#3. Fabales CID-2 (null HISSE)
 turnover <- c(1, 1, 2, 2)
 extinction.fraction <- rep(1, 4) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=1, make.null=TRUE)
@@ -129,7 +129,7 @@ Model parameters:
 3.125897725 3.125897725 0.949894298 0.949894298 0.002406056 0.001231213 
 
 ############################
-#4. CID-4
+#4. Fabales CID-4
 turnover <- c(1, 1, 2, 2, 3, 3, 4, 4)
 extinction.fraction <- rep(1, 8) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=3, make.null=TRUE)
@@ -158,7 +158,7 @@ Model parameters:
 
 
 ############################
-#5. MISSE (trait-free, tip rates)
+#5. Fabales MISSE (trait-free, tip rates)
 turnover <- c(1)
 eps <- c(1)
 one.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
@@ -195,7 +195,7 @@ turnover <- c(1,2,3,4)
 extinction.fraction <- rep(1, 4) 
 trans.rate.hisse <- TransMatMakerHiSSE(hidden.traits=1)
 print(trans.rate.hisse)
-
+#HiSSE
 HiSSE <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
@@ -214,6 +214,44 @@ Model parameters:
 3.156031e-02 2.096788e-09 2.694958e-01 2.694958e-01 
 
 
+#BiSSE
+turnover <- c(1,2)
+extinction.fraction <- c(1,1)
+BiSSE <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=FALSE, 
+                     trans.rate=trans.rates.bisse)
+Fit 
+            lnL             AIC            AICc          n.taxa n.hidden.states 
+      -6397.342       12804.685       12804.712        2157.000           1.000 
+
+Model parameters: 
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A 
+2.0989113285 3.1860417579 0.9366492254 0.9366492254 0.0188668477 0.0007871378 
+
+
+#CID2
+turnover <- c(1, 1, 2, 2)
+extinction.fraction <- rep(1, 4) 
+trans.rate <- TransMatMakerHiSSE(hidden.traits=1, make.null=TRUE)
+trans.rate = ParDrop(trans.rate, c(3,5,8,10))
+
+CID2 <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=TRUE, 
+                     trans.rate=trans.rate)
+
+Fit 
+            lnL             AIC            AICc          n.taxa n.hidden.states 
+      -6409.027       12828.054       12828.082        2157.000           2.000 
+
+Model parameters: 
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A 
+3.1205264937 3.1205264937 0.9401849433 0.9401849433 0.0175096333 0.0008643827 
+  turnover0B   turnover1B        eps0B        eps1B        q0B1B        q1B0B 
+0.3168891373 0.3168891373 0.9401849433 0.9401849433 0.0175096333 0.0008643827 
+
+#CID4
 turnover <- c(1, 1, 2, 2, 3, 3, 4, 4)
 extinction.fraction <- rep(1, 8) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=3, make.null=TRUE)
