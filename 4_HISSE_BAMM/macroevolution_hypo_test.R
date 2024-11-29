@@ -365,4 +365,4 @@ twentysix.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
 #reconstruct tip rate with number of hidden.states=21
 twentyone.rate.recon <- MarginReconMiSSE(phy=phy, f=1,  hidden.states=21, pars=twentyone.rate$solution, n.cores=4, AIC=twentyone.rate$AIC)
 plot.misse.states(twentyone.rate.recon, rate.param="net.div", show.tip.label=TRUE, type="phylogram",fsize=.25, legend="none")
-tip.rates <- GetModelAveRates(tewentyone.rate.recon, type = c("tips"))
+tip.rates <- GetModelAveRates(twentyone.rate.recon, type = c("tips"))
