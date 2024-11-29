@@ -69,13 +69,13 @@ Model parameters:
 ################################################
 
 #2. Fabales HISSE
-#decouple turover rate for 0A, 1A, 0B, 1B
+#1 hidden state
 turnover <- c(1,2,3,4)
 extinction.fraction <- rep(1, 4) 
 trans.rate.hisse <- TransMatMakerHiSSE(hidden.traits=1)
 print(trans.rate.hisse)
 
-HiSSE <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+HiSSE_one <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
 
@@ -103,6 +103,15 @@ plot_hisse <- plot.hisse.states(hisse_figure, rate.param = "net.div", show.tip.l
 #Ancestral State Estimation for BiSSE
 bisse_figure <- MarginReconHiSSE(phy=phy, data=trait.dat, f=f,par=BiSSE$solution, hidden.states=0,AIC=BiSSE$AIC)
 plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.label = FALSE)
+
+#2 hidden states
+turnover <- c(1, 1, 2, 2, 3, 3)
+extinction.fraction <- rep(1, 6) 
+trans.rate <- TransMatMakerHiSSE(hidden.traits=2)
+HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=TRUE, 
+                     trans.rate=trans.rate.hisse)
+
 
 ############################
 #3. Fabales CID-2 (null HISSE)
@@ -157,8 +166,11 @@ Model parameters:
 0.002163516 0.001171302 0.106109050 0.106109050 0.106109050 0.106109050 0.106109050 0.106109050 
 
 
-############################
+############################################################
 #5. Fabales MISSE (trait-free, tip rates)
+################################
+
+#Greedy test for the best number of hidden rates
 turnover <- c(1)
 eps <- c(1)
 one.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
@@ -179,13 +191,63 @@ three.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
 turnover <- c(1,2,3,4)
 eps <- c(1,1,1,1)
 four.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=
+#AICc=18228
 
 #rate classes A:E
 turnover <- c(1,2,3,4,5)
 eps <- c(1,1,1,1,1)
 five.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=
+#AICc=18201
+
+turnover <- c(1,2,3,4,5,6,7,8,9)
+eps <- c(1,1,1,1,1,1,1,1,1)
+nine.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18156
+
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)
+eps <- rep(1,19)
+nineteen.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AIC= 18137
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+eps <- rep(1,20)
+twenty.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18134.2
+
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)
+eps <- rep(1,21)
+twentyone.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18132.78
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22)
+eps <- rep(1,22)
+twentytwo.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc= 18138.92
+
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
+eps <- rep(1,23)
+twentythree.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc= 18136
+
+turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26)
+eps <- rep(1,26)
+twentysix.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
+#AICc=18137
+
+
+#misse_recon <- MarginReconMiSSE(phy = model.set[[model_index]]$phy, f = 1, 
+#                                    hidden.states = nturnover, 
+#                                    pars = model.set[[model_index]]$solution, 
+#                                    AIC = model.set[[model_index]]$AIC)
+
+#reconstruct tip rate with number of hidden.states=21
+twentyone.rate.recon <- MarginReconMiSSE(phy=phy, f=1,  hidden.states=21, pars=twentyone.rate$solution, n.cores=4, AIC=twentyone.rate$AIC)
+plot.misse.states(twentyone.rate.recon, rate.param="net.div", show.tip.label=TRUE, type="phylogram",fsize=.25, legend="none")
+tip.rates <- GetModelAveRates(twentyone.rate.recon, type = c("tips"))
+
 
 ################################################################
 #6. Papilionoideae-specific analysis
@@ -284,85 +346,3 @@ Model parameters:
 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 0.1259020905 
 
 
-
-############################################################
-#7. MISSE (trait-free, tip rates)
-################################
-
-#Greedy test for the best number of hidden rates
-turnover <- c(1)
-eps <- c(1)
-one.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=19302
-
-turnover <- c(1,2)
-eps <- c(1,1)
-two.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18400
-
-#rate classes A:C
-turnover <- c(1,2,3)
-eps <- c(1,1,1)
-three.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18279
-
-#rate classes A:D
-turnover <- c(1,2,3,4)
-eps <- c(1,1,1,1)
-four.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18228
-
-#rate classes A:E
-turnover <- c(1,2,3,4,5)
-eps <- c(1,1,1,1,1)
-five.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18201
-
-turnover <- c(1,2,3,4,5,6,7,8,9)
-eps <- c(1,1,1,1,1,1,1,1,1)
-nine.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18156
-
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)
-eps <- rep(1,19)
-nineteen.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AIC= 18137
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
-eps <- rep(1,20)
-twenty.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18134.2
-
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)
-eps <- rep(1,21)
-twentyone.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18132.78
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22)
-eps <- rep(1,22)
-twentytwo.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc= 18138.92
-
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23)
-eps <- rep(1,23)
-twentythree.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc= 18136
-
-turnover <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26)
-eps <- rep(1,26)
-twentysix.rate <- MiSSE(phy, f=1, turnover=turnover, eps=eps)
-#AICc=18137
-
-
-#misse_recon <- MarginReconMiSSE(phy = model.set[[model_index]]$phy, f = 1, 
-#                                    hidden.states = nturnover, 
-#                                    pars = model.set[[model_index]]$solution, 
-#                                    AIC = model.set[[model_index]]$AIC)
-
-#reconstruct tip rate with number of hidden.states=21
-twentyone.rate.recon <- MarginReconMiSSE(phy=phy, f=1,  hidden.states=21, pars=twentyone.rate$solution, n.cores=4, AIC=twentyone.rate$AIC)
-plot.misse.states(twentyone.rate.recon, rate.param="net.div", show.tip.label=TRUE, type="phylogram",fsize=.25, legend="none")
-tip.rates <- GetModelAveRates(twentyone.rate.recon, type = c("tips"))
