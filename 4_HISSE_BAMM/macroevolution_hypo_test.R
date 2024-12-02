@@ -104,13 +104,59 @@ plot_hisse <- plot.hisse.states(hisse_figure, rate.param = "net.div", show.tip.l
 bisse_figure <- MarginReconHiSSE(phy=phy, data=trait.dat, f=f,par=BiSSE$solution, hidden.states=0,AIC=BiSSE$AIC)
 plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.label = FALSE)
 
-#2 hidden states
-turnover <- c(1, 1, 2, 2, 3, 3)
+#3 hidden states
+turnover <- c(1, 2, 3, 4, 5, 6)
 extinction.fraction <- rep(1, 6) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=2)
 HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
+
+HiSSE_two
+
+Fit
+            lnL             AIC            AICc          n.taxa n.hidden.states
+      -9310.949       18643.898       18643.977        3326.000           3.000
+
+Model parameters:
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A        q0A0B        q0A0C        q1A1B
+7.426899e-01 7.426899e-01 9.541735e-01 9.541735e-01 3.877899e-03 3.921268e-03 1.474672e-01 1.474672e-01 1.474672e-01
+       q1A1C   turnover0B   turnover1B        eps0B        eps1B        q0B1B        q1B0B        q0B0A        q0B0C
+1.474672e-01 2.433228e-01 2.433228e-01 9.541735e-01 9.541735e-01 3.590887e-09 2.061154e-09 1.474672e-01 1.474672e-01
+       q1B1A        q1B1C   turnover0C   turnover1C        eps0C        eps1C        q0C1C        q1C0C        q0C0A
+1.474672e-01 1.474672e-01 7.874236e+00 7.874236e+00 9.541735e-01 9.541735e-01 2.536519e-03 2.061154e-09 1.474672e-01
+       q0C0B        q1C1A        q1C1B
+1.474672e-01 1.474672e-01 1.474672e-01 
+
+#4 hidden states
+turnover <- c(1, 2, 3, 4, 5, 6, 7, 8)
+extinction.fraction <- rep(1, 8)
+trans.rate <- TransMatMakerHiSSE(hidden.traits=3)
+HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+                     eps=extinction.fraction, hidden.states=TRUE, 
+                     trans.rate=trans.rate.hisse)
+
+HiSSE_three
+
+Fit
+            lnL             AIC            AICc          n.taxa n.hidden.states
+      -9281.947       18599.893       18600.100        3326.000           4.000
+
+Model parameters:
+
+  turnover0A   turnover1A        eps0A        eps1A        q0A1A        q1A0A        q0A0B        q0A0C        q0A0D
+8.836121e-01 8.077196e+00 9.459972e-01 9.459972e-01 9.448870e-03 2.061154e-09 1.044834e-01 1.044834e-01 1.044834e-01
+       q1A1B        q1A1C        q1A1D   turnover0B   turnover1B        eps0B        eps1B        q0B1B        q1B0B
+1.044834e-01 1.044834e-01 1.044834e-01 7.030263e-01 1.063395e+00 9.459972e-01 9.459972e-01 7.989273e-04 2.937228e-03
+       q0B0A        q0B0C        q0B0D        q1B1A        q1B1C        q1B1D   turnover0C   turnover1C        eps0C
+1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01 6.641535e-09 2.101791e-01 9.459972e-01
+       eps1C        q0C1C        q1C0C        q0C0A        q0C0B        q0C0D        q1C1A        q1C1B        q1C1D
+9.459972e-01 2.070454e-09 2.070469e-09 1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01 1.044834e-01
+  turnover0D   turnover1D        eps0D        eps1D        q0D1D        q1D0D        q0D0A        q0D0B        q0D0C
+7.880544e+00 1.189505e+00 9.459972e-01 9.459972e-01 2.064055e-09 2.756798e-03 1.044834e-01 1.044834e-01 1.044834e-01
+       q1D1A        q1D1B        q1D1C
+1.044834e-01 1.044834e-01 1.044834e-01 
 
 
 ############################
