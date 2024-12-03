@@ -69,13 +69,13 @@ Model parameters:
 ################################################
 
 #2. Fabales HISSE
-#1 hidden state
+#2 hidden state (standard)
 turnover <- c(1,2,3,4)
 extinction.fraction <- rep(1, 4) 
 trans.rate.hisse <- TransMatMakerHiSSE(hidden.traits=1)
 print(trans.rate.hisse)
 
-HiSSE_one <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
 
@@ -108,11 +108,11 @@ plot_hisse <- plot.hisse.states(bisse_figure, rate.param = "net.div", show.tip.l
 turnover <- c(1, 2, 3, 4, 5, 6)
 extinction.fraction <- rep(1, 6) 
 trans.rate <- TransMatMakerHiSSE(hidden.traits=2)
-HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+HiSSE_three <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
 
-HiSSE_two
+HiSSE_three
 
 Fit
             lnL             AIC            AICc          n.taxa n.hidden.states
@@ -133,11 +133,11 @@ Model parameters:
 turnover <- c(1, 2, 3, 4, 5, 6, 7, 8)
 extinction.fraction <- rep(1, 8)
 trans.rate <- TransMatMakerHiSSE(hidden.traits=3)
-HiSSE_two <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
+HiSSE_four <- hisse(phy=phy, data=trait.dat, f=f, turnover=turnover, 
                      eps=extinction.fraction, hidden.states=TRUE, 
                      trans.rate=trans.rate.hisse)
 
-HiSSE_three
+HiSSE_four
 
 Fit
             lnL             AIC            AICc          n.taxa n.hidden.states
