@@ -2,7 +2,7 @@
 
 ## BAMM to detect shifts in diversification rates
 
-See R script `bammtools.R` for details
+See R script `bammtools.R` for details. To generate Fig. 2, we used `bammtools_plot_script.R` to plot the net diversification rate estimated by BAMM, tip rates estimated by MiSSE, and the keel or non-keel floral trait.
 
 ## Trait-dependent diversification
 
