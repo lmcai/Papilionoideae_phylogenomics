@@ -18,7 +18,7 @@ iqtree2 -s sp287.G672.fas -m GTR+F+R4 -z conTr1.trees -n 0 -zb 1000 -au -zw
 1. Commands to get gCF and sCF in iqtree:
 ```
 #gene concordance factor
-iqtree2 -t iqtree4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
+iqtree2 -te iqtree4gCF.tre --gcf G1456.trees --prefix G1456onRAxML.gCF
 #site concordance factor
 iqtree2 -te iqtree.tre -s sp287.G672.fas --scfl 200 --prefix G672onRaxML.sCF
 ```
